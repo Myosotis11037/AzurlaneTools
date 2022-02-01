@@ -9,7 +9,7 @@ import java.util.Optional;
 // spring jpa
 
 public interface CarronadeDao extends JpaRepository<Carronade, String> {
-
-    Optional<Carronade> findByHp(int hp);
+//
+//    Optional<Carronade> findByHp(int hp);
 
 }
