@@ -32,7 +32,7 @@ public class MyController {
     }
 
     @PostMapping("/find/kansen/{name}")
-    public String add(@PathVariable String name, @PathVariable String type, @PathVariable String rarity, @PathVariable String camp){
+    public String addKansens(@PathVariable String name, @PathVariable String type, @PathVariable String rarity, @PathVariable String camp){
         kansensService.addOrUpdate(name, type, rarity, camp);
         return "OK";
     }
