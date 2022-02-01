@@ -1,11 +1,13 @@
-package com.linya.blhxtools.controller;
+package com.linya.blhxtools.rest;
 
 import com.linya.blhxtools.Result;
-import com.linya.blhxtools.entity.carronade;
-import com.linya.blhxtools.entity.kansens_search;
+import com.linya.blhxtools.entity.Carronade;
+import com.linya.blhxtools.entity.KansensSearch;
+import com.linya.blhxtools.entity.User;
 import com.linya.blhxtools.service.CarronadeService;
 import com.linya.blhxtools.service.KansensService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -19,13 +21,8 @@ public class MyController {
     @Resource
     private KansensService kansensService;
 
-    @GetMapping("/login")
-    public ResponseEntity<Result<String>> login(){
-        return Result.ok("Hello Bug!");
-    }
-
     @GetMapping("/find/kansen/{name}")
-    public ResponseEntity<Result<kansens_search>> findKansens(@RequestParam String name){
+    public ResponseEntity<Result<KansensSearch>> findKansens(@RequestParam String name){
         try{
             return Result.ok(kansensService.find(name));
         }
@@ -34,8 +31,11 @@ public class MyController {
         }
     }
 
-
-
+    @PostMapping("/find/kansen/{name}")
+    public String add(@PathVariable String name, @PathVariable String type, @PathVariable String rarity, @PathVariable String camp){
+        kansensService.addOrUpdate(name, type, rarity, camp);
+        return "OK";
+    }
 
 
 //    @GetMapping("/find/carronade")
@@ -44,7 +44,7 @@ public class MyController {
 //    }
 
     @GetMapping("/find/carronade/{name}")
-    public ResponseEntity<Result<carronade>> find(@PathVariable String name) {
+    public ResponseEntity<Result<Carronade>> find(@PathVariable String name) {
         try {
             return Result.ok(carronadeService.find(name));
         } catch (IllegalArgumentException e) {
@@ -53,7 +53,7 @@ public class MyController {
     }
 
 
-    @PostMapping("/find/{name}")
+    @PostMapping("/find/carronade/{name}")
     public String add(@PathVariable String name, @RequestParam int hp, @RequestParam String armor) {
         carronadeService.addOrUpdate(name, hp, armor);
         return "OK";

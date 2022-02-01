@@ -1,36 +1,42 @@
 package com.linya.blhxtools.config;
 
-import com.linya.blhxtools.MyUserDetailsService;
+import com.linya.blhxtools.MyFilter;
+import com.linya.blhxtools.service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.csrf.CsrfFilter;
 
 import javax.annotation.Resource;
 
-
-// spring boot security
 
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Resource
-    private MyUserDetailsService myUserDetailsService;
+    private UserService userService;
+
+    @Resource
+    private MyFilter myFilter;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/find").permitAll()
+                .antMatchers("/user").permitAll()
 //                .antMatchers("/**").authenticated()
                 .and()
-                .httpBasic().disable();
+                .httpBasic().disable()
+                .formLogin()
+                .and()
+                .addFilterAfter(myFilter, CsrfFilter.class);
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(myUserDetailsService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
     }
 
     @Bean

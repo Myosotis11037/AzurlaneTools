@@ -4,19 +4,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.*;
 
+//存储舰娘主要信息的实体类，主要用于缩小舰娘的搜索范围
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class kansens_search {
+public class KansensSearch {
+
     @Id
     @Column(length = 10)
-    @PrimaryKeyJoinColumn
     private String name;
 
     @Column(length = 10, nullable = false)

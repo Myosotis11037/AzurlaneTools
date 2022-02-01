@@ -1,6 +1,6 @@
 package com.linya.blhxtools.dao;
 
-import com.linya.blhxtools.entity.carronade;
+import com.linya.blhxtools.entity.Carronade;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
@@ -8,8 +8,8 @@ import java.util.Optional;
 
 // spring jpa
 
-public interface CarronadeDao extends JpaRepository<carronade, String> {
+public interface CarronadeDao extends JpaRepository<Carronade, String> {
 
-    Optional<carronade> findByHp(int hp);
+    Optional<Carronade> findByHp(int hp);
 
 }

@@ -1,10 +1,8 @@
 package com.linya.blhxtools.dao;
 
-import com.linya.blhxtools.entity.kansens_search;
+import com.linya.blhxtools.entity.KansensSearch;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.Optional;
-
-public interface KansensSearchDao extends JpaRepository<kansens_search, String> {
+public interface KansensSearchDao extends JpaRepository<KansensSearch, String> {
 
 }

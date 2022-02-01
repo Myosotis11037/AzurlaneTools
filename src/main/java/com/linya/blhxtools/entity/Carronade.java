@@ -9,11 +9,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.PrimaryKeyJoinColumn;
 
+
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class carronade {
+public class Carronade {
 
     @Id
     @Column(length = 32)
