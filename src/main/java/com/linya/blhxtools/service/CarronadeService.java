@@ -16,8 +16,26 @@ public class CarronadeService {
         return carronadeDao.findById(name).orElseThrow(() -> new IllegalArgumentException(name + " not found"));
     }
 
-    public void addOrUpdate(String name, int hp, String armor) {
-        Carronade carronade = new Carronade(name, hp, armor);
+    public void addOrUpdate(String name,
+                            String type,
+                            String damage,
+                            int damage_correction,
+                            double speeding,
+                            int artillery,
+                            int antiaircraft,
+                            String characteristic,
+                            String ammunition,
+                            int search_range,
+                            int search_angle,
+                            String ammo_distance,
+                            int spread_angle,
+                            int damage_range,
+                            int spread_range,
+                            String camp,
+                            String alias){
+
+        Carronade carronade = new Carronade(name, type, damage, damage_correction,speeding,artillery,antiaircraft,characteristic,ammunition,search_range,search_angle,ammo_distance,spread_angle,damage_range,spread_range,camp,alias);
+
         carronadeDao.save(carronade);
     }
 

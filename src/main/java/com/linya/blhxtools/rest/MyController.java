@@ -3,11 +3,9 @@ package com.linya.blhxtools.rest;
 import com.linya.blhxtools.Result;
 import com.linya.blhxtools.entity.Carronade;
 import com.linya.blhxtools.entity.KansensSearch;
-import com.linya.blhxtools.entity.User;
 import com.linya.blhxtools.service.CarronadeService;
 import com.linya.blhxtools.service.KansensService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -22,7 +20,7 @@ public class MyController {
     private KansensService kansensService;
 
     @GetMapping("/find/kansen/{name}")
-    public ResponseEntity<Result<KansensSearch>> findKansens(@RequestParam String name){
+    public ResponseEntity<Result<KansensSearch>> findKansens(@PathVariable String name){
         try{
             return Result.ok(kansensService.find(name));
         }
@@ -31,8 +29,9 @@ public class MyController {
         }
     }
 
-    @PostMapping("/find/kansen/{name}")
-    public String addKansens(@PathVariable String name, @PathVariable String type, @PathVariable String rarity, @PathVariable String camp){
+
+    @PostMapping("/add/kansen/{name}")
+    public String addKansens(@PathVariable String name, @RequestParam String type, @RequestParam String rarity, @RequestParam String camp){
         kansensService.addOrUpdate(name, type, rarity, camp);
         return "OK";
     }
@@ -43,7 +42,7 @@ public class MyController {
 //        return Result.ok(carronadeService.findNameByHp(hp));
 //    }
 
-    @GetMapping("/find/carronade/{name}")
+    @GetMapping("/find/carronade")
     public ResponseEntity<Result<Carronade>> find(@PathVariable String name) {
         try {
             return Result.ok(carronadeService.find(name));
@@ -54,8 +53,24 @@ public class MyController {
 
 
     @PostMapping("/find/carronade/{name}")
-    public String add(@PathVariable String name, @RequestParam int hp, @RequestParam String armor) {
-        carronadeService.addOrUpdate(name, hp, armor);
+    public String add(@PathVariable String name,
+                      @RequestParam String type,
+                      @RequestParam String damage,
+                      @RequestParam int damage_correction,
+                      @RequestParam double speeding,
+                      @RequestParam int artillery,
+                      @RequestParam int antiaircraft,
+                      @RequestParam String characteristic,
+                      @RequestParam String ammunition,
+                      @RequestParam int search_range,
+                      @RequestParam int search_angle,
+                      @RequestParam String ammo_distance,
+                      @RequestParam int spread_angle,
+                      @RequestParam int damage_range,
+                      @RequestParam int spread_range,
+                      @RequestParam String camp,
+                      @RequestParam String alias) {
+        carronadeService.addOrUpdate(name, type, damage, damage_correction,speeding,artillery,antiaircraft,characteristic,ammunition,search_range,search_angle,ammo_distance,spread_angle,damage_range,spread_range,camp,alias);
         return "OK";
     }
 
