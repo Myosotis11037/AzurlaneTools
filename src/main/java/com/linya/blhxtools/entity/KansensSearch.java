@@ -5,13 +5,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 //存储舰娘主要信息的实体类，主要用于缩小舰娘的搜索范围
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class KansensSearch {
+public class KansensSearch{
 
     @Id
     @Column(length = 10)
@@ -25,5 +26,9 @@ public class KansensSearch {
 
     @Column(length = 10, nullable = false)
     private String camp;
+
+    public boolean isValid() {
+        return name != null && type != null && rarity != null && camp != null;
+    }
 
 }

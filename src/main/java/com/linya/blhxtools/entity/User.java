@@ -5,12 +5,13 @@ import lombok.Data;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 //表示用户的实体类
 @Entity
 @Data
-public class User implements UserDetails {
+public class User implements UserDetails{
 
     @Id
     private String username;

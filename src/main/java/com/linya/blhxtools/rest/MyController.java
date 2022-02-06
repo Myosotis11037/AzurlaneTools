@@ -12,14 +12,13 @@ import javax.annotation.Resource;
 
 @RestController
 public class MyController {
+    @Resource
+    private KansensService kansensService;
 
     @Resource
     private CarronadeService carronadeService;
 
-    @Resource
-    private KansensService kansensService;
-
-    @GetMapping("/find/kansen/{name}")
+    @GetMapping("/kansen/{name}")
     public ResponseEntity<Result<KansensSearch>> findKansens(@PathVariable String name){
         try{
             return Result.ok(kansensService.find(name));
@@ -29,20 +28,20 @@ public class MyController {
         }
     }
 
-
-    @PostMapping("/add/kansen/{name}")
-    public String addKansens(@PathVariable String name, @RequestParam String type, @RequestParam String rarity, @RequestParam String camp){
-        kansensService.addOrUpdate(name, type, rarity, camp);
-        return "OK";
+    @PostMapping("/kansen")
+    public ResponseEntity<String> addKansens(@RequestBody KansensSearch kansensSearch){
+        if(!kansensSearch.isValid())
+            return ResponseEntity.badRequest().build();
+        kansensService.addOrUpdate(kansensSearch);
+        return ResponseEntity.ok("OK");
     }
-
 
 //    @GetMapping("/find/carronade")
 //    public ResponseEntity<Result<String>> findByHp(@RequestParam int hp) {
 //        return Result.ok(carronadeService.findNameByHp(hp));
 //    }
 
-    @GetMapping("/find/carronade")
+    @GetMapping("/carronade/{name}")
     public ResponseEntity<Result<Carronade>> find(@PathVariable String name) {
         try {
             return Result.ok(carronadeService.find(name));
@@ -51,8 +50,7 @@ public class MyController {
         }
     }
 
-
-    @PostMapping("/find/carronade/{name}")
+    @PostMapping("/carronade")
     public String add(@PathVariable String name,
                       @RequestParam String type,
                       @RequestParam String damage,

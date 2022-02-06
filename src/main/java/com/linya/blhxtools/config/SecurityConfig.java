@@ -25,16 +25,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.formLogin()
-                .loginProcessingUrl("/login")
-            .and()
-                .authorizeRequests()
-                .antMatchers(URL_WHITELIST).permitAll()
-                .antMatchers("/update/*").hasAuthority("admin")
-                .anyRequest().authenticated()
-            .and()
-                .httpBasic().disable()
-                .addFilterAfter(myFilter, CsrfFilter.class);
+        http.csrf().disable();
+//        http.formLogin()
+//                .loginProcessingUrl("/login")
+//            .and()
+//                .authorizeRequests()
+//                .antMatchers(URL_WHITELIST).permitAll()
+//                .antMatchers("/update/*").hasAuthority("admin")
+//                .anyRequest().authenticated()
+//            .and()
+//                .httpBasic().disable()
+//                .addFilterAfter(myFilter, CsrfFilter.class);
     }
 
     @Override
