@@ -14,12 +14,11 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Carronade {
+public class Carronade{
 
     //舰炮名字，是游戏中舰炮的官方名字
     @Id
     @Column(length = 32)
-    @PrimaryKeyJoinColumn
     private String name;
 
     //舰炮类型，比如：驱逐炮，重巡炮等
