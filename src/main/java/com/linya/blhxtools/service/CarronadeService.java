@@ -16,6 +16,10 @@ public class CarronadeService {
         return carronadeDao.findById(name).orElseThrow(() -> new IllegalArgumentException(name + " not found"));
     }
 
+    public void addOrUpdate(Carronade carronade) {
+        carronadeDao.save(carronade);
+    }
+
     public void addOrUpdate(String name,
                             String type,
                             String damage,
@@ -38,6 +42,7 @@ public class CarronadeService {
 
         carronadeDao.save(carronade);
     }
+
 
 //    public String findNameByHp(int hp) {
 //        Optional<carronade> carronade = carronadeDao.findByHp(hp);

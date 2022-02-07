@@ -51,25 +51,11 @@ public class MyController {
     }
 
     @PostMapping("/carronade")
-    public String add(@PathVariable String name,
-                      @RequestParam String type,
-                      @RequestParam String damage,
-                      @RequestParam int damage_correction,
-                      @RequestParam double speeding,
-                      @RequestParam int artillery,
-                      @RequestParam int antiaircraft,
-                      @RequestParam String characteristic,
-                      @RequestParam String ammunition,
-                      @RequestParam int search_range,
-                      @RequestParam int search_angle,
-                      @RequestParam String ammo_distance,
-                      @RequestParam int spread_angle,
-                      @RequestParam int damage_range,
-                      @RequestParam int spread_range,
-                      @RequestParam String camp,
-                      @RequestParam String alias) {
-        carronadeService.addOrUpdate(name, type, damage, damage_correction,speeding,artillery,antiaircraft,characteristic,ammunition,search_range,search_angle,ammo_distance,spread_angle,damage_range,spread_range,camp,alias);
-        return "OK";
+    public ResponseEntity<String> add(@RequestBody Carronade carronade) {
+        if(!carronade.isValid())
+            return ResponseEntity.badRequest().build();
+        carronadeService.addOrUpdate(carronade);
+        return ResponseEntity.ok("OK");
     }
 
 }

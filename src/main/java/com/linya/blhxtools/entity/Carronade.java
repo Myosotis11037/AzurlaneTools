@@ -87,4 +87,12 @@ public class Carronade {
     private String alias;
 
 
+    public boolean isValid() {
+        return name != null
+                && type != null
+                && damage != null
+                && characteristic != null
+                && ammunition != null
+                && camp != null;
+    }
 }
