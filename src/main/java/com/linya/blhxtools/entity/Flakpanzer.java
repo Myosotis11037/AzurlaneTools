@@ -30,7 +30,7 @@ public class Flakpanzer {
 
     //防空炮索敌范围
     @Column(nullable = false)
-    private int range;
+    private int search_range;
 
     //防空值，此值是装备了该防空炮的舰娘可以获得的防空属性加成
     @Column(nullable = false)
