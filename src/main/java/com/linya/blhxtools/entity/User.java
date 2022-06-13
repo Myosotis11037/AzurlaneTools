@@ -21,7 +21,6 @@ public class User implements UserDetails{
     private String password;
 
     @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "username")
     private List<MyAuthority> authorities;
 
     @Override

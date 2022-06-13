@@ -4,9 +4,11 @@ import com.linya.blhxtools.Result;
 import com.linya.blhxtools.entity.Carronade;
 import com.linya.blhxtools.entity.Flakpanzer;
 import com.linya.blhxtools.entity.KansensSearch;
+import com.linya.blhxtools.entity.Torpedo;
 import com.linya.blhxtools.service.CarronadeService;
 import com.linya.blhxtools.service.FlakpanzerService;
 import com.linya.blhxtools.service.KansensService;
+import com.linya.blhxtools.service.TorpedoService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +24,9 @@ public class MyController {
 
     @Resource
     private FlakpanzerService flakpanzerService;
+
+    @Resource
+    private TorpedoService torpedoService;
 
     @GetMapping("/kansen/{name}")
     public ResponseEntity<Result<KansensSearch>> findKansens(@PathVariable String name){
@@ -77,6 +82,24 @@ public class MyController {
         if(!flakpanzer.isValid())
             return ResponseEntity.badRequest().build();
         flakpanzerService.addOrUpdate(flakpanzer);
+        return ResponseEntity.ok("OK");
+    }
+
+    @GetMapping("torpedo/{name}")
+    public ResponseEntity<Result<Torpedo>> findTorpedo(@PathVariable String name){
+        try {
+            return Result.ok(torpedoService.find(name));
+        }
+        catch(IllegalArgumentException e){
+            return ResponseEntity.status(490).body(new Result<>(490, e.getMessage(),null));
+        }
+    }
+
+    @PostMapping("torpedo")
+    public ResponseEntity<String> addTorpedo(@RequestBody Torpedo torpedo){
+        if(!torpedo.isValid())
+            return ResponseEntity.badRequest().build();
+        torpedoService.addOrUpdate(torpedo);
         return ResponseEntity.ok("OK");
     }
 
