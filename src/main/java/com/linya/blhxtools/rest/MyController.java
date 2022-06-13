@@ -25,6 +25,9 @@ public class MyController {
     @Resource
     private AircraftService aircraftService;
 
+    @Resource
+    private EquipmentService equipmentService;
+
     @GetMapping("/kansen/{name}")
     public ResponseEntity<Result<KansensSearch>> findKansens(@PathVariable String name){
         try{
@@ -115,6 +118,24 @@ public class MyController {
         if(!aircraft.isValid())
             return ResponseEntity.badRequest().build();
         aircraftService.addOrUpdate(aircraft);
+        return ResponseEntity.ok("OK");
+    }
+
+    @GetMapping("equipment/{name}")
+    public ResponseEntity<Result<Equipment>> findEquipment(@PathVariable String name){
+        try{
+            return Result.ok(equipmentService.find(name));
+        }
+        catch(IllegalArgumentException e){
+            return ResponseEntity.status(490).body(new Result<>(490, e.getMessage(), null));
+        }
+    }
+
+    @PostMapping("equipment")
+    public ResponseEntity<String> addEquipment(@RequestBody Equipment equipment){
+        if(!equipment.isValid())
+            return ResponseEntity.badRequest().build();
+        equipmentService.addOrUpdate(equipment);
         return ResponseEntity.ok("OK");
     }
 
