@@ -4,11 +4,12 @@ import com.linya.blhxtools.Result;
 import com.linya.blhxtools.entity.*;
 import com.linya.blhxtools.service.*;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
-@RestController
+@Controller
 public class MyController {
     @Resource
     private KansensService kansensService;
@@ -138,5 +139,6 @@ public class MyController {
         equipmentService.addOrUpdate(equipment);
         return ResponseEntity.ok("OK");
     }
+
 
 }

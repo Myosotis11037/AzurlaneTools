@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <title>碧蓝航线配装系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--link rel='stylesheet' type='text/css' href='css/googlefonts.css'-->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <!-- Theme CSS -->
+    <link rel="stylesheet" type="text/css" href="css/vendor.css">
+    <link rel="stylesheet" type="text/css" href="css/theme.css">
+    <link rel="stylesheet" type="text/css" href="css/utility.css">
+    <link rel="stylesheet" type="text/css" href="css/custom.css">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="img/favicon.ico">
+
+    <style>
+        .nav li {
+            border-bottom: 1px solid #eee;
+        }
+    </style>
+
+</head>
+
+<!-- Start: Header -->
+<header class="navbar navbar-fixed-top">
+    <div class="navbar-branding"> <span id="toggle_sidemenu_l" class="glyphicons glyphicons-show_lines"></span>
+        <a class="navbar-brand" style="padding-top: 7px;">碧蓝航线配装系统</a>
+    </div>
+    <div class="navbar-left">
+        <div class="navbar-divider"></div>
+        <div id="settings_menu">
+            <ul class="dropdown-menu" role="menu">
+            </ul>
+        </div>
+
+    </div>
+    <div class="navbar-right">
+
+        <div class="navbar-menus">
+            <div class="btn-group" id="toggle_sidemenu_r">
+                <button type="button"> <a href = "/login"><span class="glyphicons glyphicons-parents"></span> </a></button>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- End: Header -->
+<!-- Start: Main -->
+<div id="main">
+    <!-- Start: Sidebar -->
+    <aside id="sidebar_left">
+        <div class="user-info">
+            <div class="media">
+                <a class="pull-left" href="#">
+                    <div class="media-object border border-purple br64 bw2 p2"> <img class="br64" src="img/timg.gif" alt="..."> </div>
+                </a>
+                <div class="mobile-link"> <span class="glyphicons glyphicons-show_big_thumbnails"></span> </div>
+                <div class="media-body">
+                    <h5 class="media-heading mt5 mbn fw700 cursor">admin<span class="caret ml5"></span></h5>
+                    <div class="media-links fs11">
+                        <a href="#">凛夜</a><i class="fa fa-circle text-muted fs3 p8 va-m"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="user-divider"></div>
+        <div class="sidebar-menu">
+            <ul class="nav sidebar-nav">
+
+                <li>
+                    <a class="accordion-toggle" href="/kansens" target="right"> <span class="glyphicons glyphicons-user"></span><span class="sidebar-title">舰娘管理</span><span class="caret"></span></a>
+                </li>
+
+                <li>
+                    <a class="accordion-toggle" href="/kansenshow" target="right"> <span class="glyphicons glyphicons-user"></span><span class="sidebar-title">舰娘图鉴</span><span class="caret"></span></a>
+
+                </li>
+                <li>
+                    <a class="accordion-toggle" href="/equipment" target="right"><span class="glyphicons glyphicons-settings"></span><span class="sidebar-title">装备管理</span><span class="caret"></span></a>
+                </li>
+
+                <li>
+                    <a class="accordion-toggle" href="/schedule" target="right"><span class="glyphicons glyphicons-settings"></span><span class="sidebar-title">装备图鉴</span><span class="caret"></span></a>
+                </li>
+
+                <li>
+                    <a class="accordion-toggle" href="/users" target="right"> <span class="glyphicons glyphicons-user"></span><span class="sidebar-title">用户管理</span><span class="caret"></span></a>
+                </li>
+
+                <li>
+                    <a class="accordion-toggle" href="/404" target="right"><span class="glyphicons glyphicons-circle_question_mark"></span><span class="sidebar-title">404页面</span><span class="caret"></span></a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+    <!-- End: Sidebar -->
+</div>
