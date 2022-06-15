@@ -2,45 +2,22 @@ package com.linya.blhxtools.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.*;
-import java.io.Serializable;
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 //表示用户的实体类
 @Entity
 @Data
-public class User implements UserDetails{
+public class User{
 
     @Id
     private String username;
 
     @Column
-    @JsonIgnore
     private String password;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    private List<MyAuthority> authorities;
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
-
+    @Column
+    private String authorities;
 }

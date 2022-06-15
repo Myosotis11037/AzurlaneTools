@@ -2,10 +2,9 @@ package com.linya.blhxtools.rest;
 
 import com.linya.blhxtools.entity.User;
 import com.linya.blhxtools.service.UserService;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -16,14 +15,23 @@ public class UserController {
     @Resource
     UserService userService;
 
-    @GetMapping("/user/{username}")
-    public UserDetails user(@RequestParam String username){
-        return userService.loadUserByUsername(username);
-    }
+    @PostMapping("/api/login")
+    public ResponseEntity<String> login(@RequestBody User user){
+        System.out.println(user);
+        User myUser;
+        //查找用户是否存在
+        try{
+            myUser = userService.find(user.getUsername());
+        }catch(IllegalArgumentException e){
+            return ResponseEntity.badRequest().build();
+        }
 
-    @PostMapping("/user/{username}")
-    public String addUser(@RequestParam String username, @RequestParam String password){
-        userService.addOrUpdate(username, password);
-        return "OK";
+        //查询密码
+        if(myUser.getPassword().equals( user.getPassword())){
+            return ResponseEntity.ok("OK");
+        }else{
+            return ResponseEntity.badRequest().build();
+        }
+
     }
 }
