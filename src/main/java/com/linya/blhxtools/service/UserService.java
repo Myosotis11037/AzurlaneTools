@@ -16,10 +16,7 @@ public class UserService {
         return userDao.findById(username).orElseThrow(() -> new IllegalArgumentException(username + " not found"));
     }
 
-    public void addOrUpdate(String u, String p) {
-        User user = new User();
-        user.setUsername(u);
-        user.setPassword(p);
+    public void addOrUpdate(User user) {
         userDao.save(user);
     }
 

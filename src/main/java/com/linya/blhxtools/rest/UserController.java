@@ -17,7 +17,6 @@ public class UserController {
 
     @PostMapping("/api/login")
     public ResponseEntity<String> login(@RequestBody User user){
-        System.out.println(user);
         User myUser;
         //查找用户是否存在
         try{
@@ -33,5 +32,12 @@ public class UserController {
             return ResponseEntity.badRequest().build();
         }
 
+    }
+
+    @PostMapping("/api/register")
+    public ResponseEntity<String> register(@RequestBody User user){
+        if(!user.isValid()) return ResponseEntity.badRequest().build();
+        userService.addOrUpdate(user);
+        return ResponseEntity.ok("OK");
     }
 }

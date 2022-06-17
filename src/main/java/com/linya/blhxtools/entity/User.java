@@ -15,9 +15,13 @@ public class User{
     @Id
     private String username;
 
-    @Column
+    @Column(nullable = false)
     private String password;
 
-    @Column
+    @Column(nullable = false)
     private String authorities;
+
+    public boolean isValid(){
+        return username != null && password != null && authorities != null;
+    }
 }
